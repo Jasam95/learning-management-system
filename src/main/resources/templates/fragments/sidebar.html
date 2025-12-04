@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<!-- admin sidebar fragment -->
+<div th:fragment="sidebar" class="bg-dark text-white p-3 vh-100"
+     sec:authorize="hasRole('ADMIN')">
+  <h4 class="text-center mb-3">🛠 Admin Panel</h4>
+  <hr class="bg-light">
+
+  <ul class="nav flex-column">
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/admin/dashboard}">📊 Dashboard</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/profile}">👤 Profile</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/admin/courses}">📚 Manage Courses</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/admin/instructors}">🧑‍🏫 Manage Instructors</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/admin/students}">🎓Manage Students</a>
+    </li>
+
+    <li class="nav-item mt-3">
+      <a class="nav-link text-white fw-bold" th:href="@{/logout}">🚪 Logout</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Instructor Sidebar fragment -->
+<div th:fragment="sidebar" class="bg-dark text-white p-3 vh-100"
+     sec:authorize="hasRole('INSTRUCTOR')">
+  <h4 class="text-center mb-3">🛠 Instructor Panel</h4>
+  <hr class="bg-light">
+
+  <ul class="nav flex-column">
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/instructor/dashboard}">📊 Dashboard</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/profile}">👤 Profile</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/instructor/courses}">🎓Manage Content</a>
+    </li>
+
+
+    <li class="nav-item mt-3">
+      <a class="nav-link text-white fw-bold" th:href="@{/logout}">🚪 Logout</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Student Sidebar fragment -->
+<div th:fragment="sidebar" class="bg-dark text-white p-3 vh-100"
+     sec:authorize="hasRole('STUDENT')">
+  <h4 class="text-center mb-3">🎓 My Account</h4>
+  <hr class="bg-light">
+
+  <ul class="nav flex-column">
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/students/dashboard}"> 📊 Dashboard</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/profile}">👤 Profile</a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" th:href="@{/students/my_courses}">🎓My Courses</a>
+    </li>
+
+    <li class="nav-item mt-3">
+      <a class="nav-link text-white fw-bold" th:href="@{/logout}">🚪 Logout</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Layout fragment with sidebar + dynamic content -->
+<div th:fragment="layout(content)">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-3">
+      <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+    </div>
+
+    <!-- Page-specific content -->
+    <div class="col-9 p-4">
+      <div th:insert="${content}"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+

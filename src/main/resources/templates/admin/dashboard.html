@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body >
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- Use layout with content -->
+<div th:replace="~{fragments/sidebar :: layout(~{::content})}">
+    <div th:fragment="content">
+
+        <div class="container mt-4">
+            <h2>Admin Dashboard</h2>
+            <hr>
+
+            <div class="row mt-4">
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center p-3">
+                        <h4 th:text="${totalInstructors}"></h4>
+                        <p>Instructors</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center p-3">
+                        <h4 th:text="${totalStudents}"></h4>
+                        <p>Students</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center p-3">
+                        <h4 th:text="${totalCourses}"></h4>
+                        <p>Courses</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center p-3">
+                        <h4 th:text="${totalEnrollments}"></h4>
+                        <p>Enrollments</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-5">
+                <a th:href="@{/admin/instructors}" class="btn btn-dark">Manage Instructors</a>
+                <a th:href="@{/admin/students}" class="btn btn-dark">Manage Students</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

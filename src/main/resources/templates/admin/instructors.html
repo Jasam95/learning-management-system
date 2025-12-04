@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin - Instructors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- Use layout with content -->
+<div th:replace="~{fragments/sidebar :: layout(~{::content})}">
+    <div th:fragment="content">
+        <h2>Instructors</h2>
+        <a class="btn btn-primary mb-3" th:href="@{/admin/instructors/create}">+ Add Instructor</a>
+
+        <table class="table table-striped">
+            <thead>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="i : ${instructors}">
+                <td th:text="${i.id}"></td>
+                <td th:text="${i.fullName}"></td>
+                <td th:text="${i.email}"></td>
+                <td>
+                    <a class="btn btn-sm btn-info" th:href="@{'/admin/instructors/view/' + ${i.id}}">View</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{'/admin/instructors/delete/' + ${i.id}}"
+                       onclick="return confirm('Delete this instructor?')">Delete</a>
+                </td>
+            </tr>
+            <tr th:if="${instructors.size()==0}">
+                <td colspan="4">No instructors found.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
